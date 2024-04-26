@@ -25,6 +25,11 @@ public class SyllabusService {
         return post;
     }
 
+    public Optional<Syllabus> findByMat(Integer mat){
+        Optional<Syllabus> syl = rutaRepository.findByMateria(mat);
+        return syl;
+    }
+
     public Optional<Syllabus> save(Syllabus post){
         rutaRepository.save(post);
         Optional<Syllabus> publicacion =rutaRepository.findById(post.getId_syllabus());

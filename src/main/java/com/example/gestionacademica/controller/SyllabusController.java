@@ -28,6 +28,13 @@ public class SyllabusController {
         }
     }
 
+    @GetMapping("/syl/{mat}")
+    public ResponseEntity<Syllabus> getByMateria(@PathVariable Integer mat){
+        Optional<Syllabus> syl = service.findByMat(mat);
+        return syl.map(c -> new ResponseEntity<>(c, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Syllabus> conseguirRuta(@PathVariable Integer id) {
         Optional<Syllabus> ruta = service.findById(id);

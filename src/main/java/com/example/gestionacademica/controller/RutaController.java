@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 import java.util.Date;
@@ -28,6 +29,13 @@ public class RutaController {
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/ruta-user/{id}")
+    public ResponseEntity<Ruta> conseguirRutaDeRelacion(@PathVariable Integer id){
+        Optional<Ruta> ruta = service.findByUsermat(id);
+        return ruta.map(c -> new ResponseEntity<>(c, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("/{id}")

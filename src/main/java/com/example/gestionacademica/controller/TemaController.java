@@ -36,6 +36,16 @@ public class TemaController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping("/lista-temas/{id}")
+    public ResponseEntity<List<Tema>> getTemasByRuta(Integer id){
+        List<Tema> temas = service.findByRuta(id);
+        if(!temas.isEmpty()){
+            return new ResponseEntity<>(temas, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PostMapping("/agregar")
     public ResponseEntity<Optional<Tema>> agregarTema(@RequestBody Tema post){
         Optional<Tema> tema = service.save(post);

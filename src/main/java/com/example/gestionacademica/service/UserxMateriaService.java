@@ -22,6 +22,7 @@ public class UserxMateriaService {
         return userRepository.findAll();
     }
 
+    public List<UserxMateria> findById_usuario(String usuario){ return userRepository.findByUsuario(usuario); }
 
     public Optional<UserxMateria> findById(Integer id){
         Optional<UserxMateria> post = userRepository.findById(id);
@@ -30,7 +31,7 @@ public class UserxMateriaService {
 
     public Optional<UserxMateria> save(UserxMateria post){
         userRepository.save(post);
-        Optional<UserxMateria> publicacion =userRepository.findById(post.getId_materia());
+        Optional<UserxMateria> publicacion =userRepository.findById(post.getId_user_mat());
         return publicacion;
     }
 
@@ -42,13 +43,12 @@ public class UserxMateriaService {
         UserxMateria post = userRepository.findById(id).orElse(null);
 
         if (post != null && publicacion != null){
-            if(publicacion.getId_materia() != null){
-                post.setId_materia(publicacion.getId_materia());
+            if(publicacion.getMateria() != null){
+                post.setMateria(publicacion.getMateria());
             }
-            if(publicacion.getId_usuario() != null){
-                post.setId_usuario(publicacion.getId_usuario());
+            if(publicacion.getUsuario() != null){
+                post.setUsuario(publicacion.getUsuario());
             }
-
             userRepository.save(post);
             return post;
         }else{

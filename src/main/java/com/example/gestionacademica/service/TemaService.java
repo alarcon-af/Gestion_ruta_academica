@@ -26,6 +26,10 @@ public class TemaService {
         return post;
     }
 
+    public List<Tema> findByRuta(Integer id){
+        return matRepository.findByRuta(id);
+    }
+
     public Optional<Tema> save(Tema post){
         matRepository.save(post);
         Optional<Tema> publicacion =matRepository.findById(post.getId_tema());
@@ -40,19 +44,21 @@ public class TemaService {
         Tema post = matRepository.findById(id).orElse(null);
 
         if (post != null && publicacion != null){
+            if(publicacion.getRuta()!= null){
+                post.setRuta(publicacion.getRuta());
+            }
+            if(publicacion.getContenido() != null){
+                post.setContenido(publicacion.getContenido());
+            }
             if(publicacion.getTitulo() != null){
                 post.setTitulo(publicacion.getTitulo());
             }
-            if(publicacion.getMaterial() != null){
-                post.setMaterial(publicacion.getMaterial());
+            if(publicacion.getFoto() != null){
+                post.setFoto(publicacion.getFoto());
             }
-            if(publicacion.getRequisito() != null){
-                post.setRequisito(publicacion.getRequisito());
+            if(publicacion.getEstado() != null){
+                post.setEstado(publicacion.getEstado());
             }
-            if(publicacion.getRequisito() != null){
-                post.setRequisito(publicacion.getRequisito());
-            }
-
             matRepository.save(post);
             return post;
         }else{

@@ -20,9 +20,9 @@ public class UserxMateria {
     @Column(name = "id_user_mat", length = 255)
     private Integer id_user_mat;
 
-    @JoinColumn(name = "id_materia", referencedColumnName = "id_materia")
-    private Integer id_materia;
+    @JoinColumn(name = "materia", referencedColumnName = "id_materia")
+    private Integer materia;
 
-    @Column(name = "id_usuario", length = 255)
-    private Integer id_usuario;
+    @Column(name = "usuario", length = 255)
+    private String usuario;
 }

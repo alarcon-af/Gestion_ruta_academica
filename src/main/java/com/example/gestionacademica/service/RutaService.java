@@ -26,6 +26,11 @@ public class RutaService {
         return post;
     }
 
+    public Optional<Ruta> findByUsermat(Integer id){
+        Optional<Ruta> ruta = rutaRepository.findByUsermat(id);
+        return ruta;
+    }
+
     public Optional<Ruta> save(Ruta post){
         rutaRepository.save(post);
         Optional<Ruta> publicacion =rutaRepository.findById(post.getId_ruta());

@@ -19,15 +19,18 @@ public class Tema {
     @Column(name = "id_tema", length = 255)
     private Integer id_tema;
 
+    @JoinColumn(name = "ruta", referencedColumnName = "id_ruta")
+    private Integer ruta;
+
+    @JoinColumn(name = "contenido", referencedColumnName = "id_contenido")
+    private Integer contenido;
+
     @Column(name = "titulo", length = 255)
     private String titulo;
 
-    @Column(name = "material", length = 255)
-    private String material;
+    @Column(name = "foto", length = 255)
+    private String foto;
 
-    @JoinColumn(name = "requisito", referencedColumnName = "id_tema")
-    private Integer requisito;
-
-    @Column(name = "video", length = 255)
-    private String video;
+    @Column(name = "estado", length = 255)
+    private String estado;
 }
