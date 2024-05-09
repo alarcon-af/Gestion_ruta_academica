@@ -37,7 +37,7 @@ public class TemaController {
     }
 
     @GetMapping("/lista-temas/{id}")
-    public ResponseEntity<List<Tema>> getTemasByRuta(Integer id){
+    public ResponseEntity<List<Tema>> getTemasByRuta(@PathVariable Integer id){
         List<Tema> temas = service.findByRuta(id);
         if(!temas.isEmpty()){
             return new ResponseEntity<>(temas, HttpStatus.OK);

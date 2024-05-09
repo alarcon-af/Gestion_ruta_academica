@@ -31,8 +31,8 @@ public class UserxMateriaController {
         }
     }
 
-    @GetMapping("/lista-relaciones/{id}")
-    public ResponseEntity<List<UserxMateria>> getRelacionesByUser(String usuario){
+    @GetMapping("/lista-relaciones/{usuario}")
+    public ResponseEntity<List<UserxMateria>> getRelacionesByUser(@PathVariable String usuario){
         List<UserxMateria> relaciones = service.findById_usuario(usuario);
         if(!relaciones.isEmpty()){
             return new ResponseEntity<>(relaciones, HttpStatus.OK);
