@@ -4,6 +4,7 @@ import com.example.gestionacademica.entity.Materia;
 import com.example.gestionacademica.entity.UserxMateria;
 import com.example.gestionacademica.service.MateriaService;
 import com.example.gestionacademica.service.UserxMateriaService;
+import org.apache.catalina.User;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,6 +40,13 @@ public class UserxMateriaController {
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/lista-relaciones/{usuario}/{materia}")
+    public ResponseEntity<UserxMateria> getRelacionEspecifica(@PathVariable String usuario, @PathVariable Integer materia){
+        Optional<UserxMateria> relacion = service.findSpecific(usuario, materia);
+        return relacion.map(c -> new ResponseEntity<>(c, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("/{id}")

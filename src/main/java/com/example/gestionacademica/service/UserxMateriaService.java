@@ -29,6 +29,11 @@ public class UserxMateriaService {
         return post;
     }
 
+    public Optional<UserxMateria> findSpecific(String usuario, Integer materia){
+        Optional<UserxMateria> rel = userRepository.findSpecificRelation(usuario, materia);
+        return rel;
+    }
+
     public Optional<UserxMateria> save(UserxMateria post){
         userRepository.save(post);
         Optional<UserxMateria> publicacion =userRepository.findById(post.getId_user_mat());
